@@ -4,6 +4,10 @@
         "master": {
             "name": "master",
             "title": "master"
+        },
+        "v0.0": {
+            "name": "v0.0",
+            "title": "v0.0"
         }
     }
 }
