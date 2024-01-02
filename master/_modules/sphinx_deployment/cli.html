@@ -233,7 +233,7 @@
     <span class="s2">&quot;--output-path&quot;</span><span class="p">,</span>
     <span class="s2">&quot;-O&quot;</span><span class="p">,</span>
     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">default</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to output docs.&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">opt_remote</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
@@ -353,10 +353,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">rp</span> <span class="o">=</span> <span class="n">Repo</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="n">rp</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">remote</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">branch</span><span class="p">)</span>
+        <span class="n">rp</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">remote</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sync failed with </span><span class="si">{</span><span class="n">remote</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sync failed with </span><span class="si">{</span><span class="n">remote</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
 
@@ -434,7 +434,7 @@
 <span class="sd">        None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rp</span> <span class="o">=</span> <span class="n">Repo</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-    <span class="n">rp</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">remote</span><span class="p">)</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">branch</span><span class="p">)</span>
+    <span class="n">rp</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">remote</span><span class="p">)</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">:refs/heads/</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pushed branch: </span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2"> to remote: </span><span class="si">{</span><span class="n">remote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
@@ -471,7 +471,10 @@
 <span class="sd">        typing.Any: The Git repository object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rp</span> <span class="o">=</span> <span class="n">Repo</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
-    <span class="n">ref</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">ref</span>
+
+    <span class="n">is_detached</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">is_detached</span>
+    <span class="n">detached_commit</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">commit</span><span class="o">.</span><span class="n">hexsha</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">is_detached</span> <span class="k">else</span> <span class="n">rp</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">ref</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">rp</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
             <span class="n">command</span><span class="o">=</span><span class="p">[</span>
@@ -499,6 +502,16 @@
                     <span class="s2">&quot;git&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;stash&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_detached</span><span class="p">:</span>
+            <span class="n">rp</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="n">command</span><span class="o">=</span><span class="p">[</span>
+                    <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;checkout&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;--progress&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;--force&quot;</span><span class="p">,</span>
+                    <span class="n">detached_commit</span><span class="p">,</span>
                 <span class="p">]</span>
             <span class="p">)</span></div>
 
