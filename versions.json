@@ -1,0 +1,9 @@
+{
+    "default": "master",
+    "versions": {
+        "master": {
+            "name": "master",
+            "title": "master"
+        }
+    }
+}
