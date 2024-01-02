@@ -1,5 +1,5 @@
 {
-    "default": "master",
+    "default": "v0.0",
     "versions": {
         "master": {
             "name": "master",
