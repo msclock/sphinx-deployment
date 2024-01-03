@@ -646,6 +646,9 @@ def serve(
     logger.debug(f"serve {input_path} {output_path} {remote}/{branch}")
     _ = sync_remote(remote, branch)
 
+    version_path = Path(output_path) / "versions.json"
+    versions = list_versions(branch, str(version_path))
+
     with TemporaryDirectory() as tmp:
         rp = Repo(".")
         rp.git.execute(
@@ -666,9 +669,15 @@ def serve(
             ]
         )
         try:
-            logger.info(f"Moved {output_path} to {tmp}")
-            shutil.move(output_path, tmp)
-            os.chdir(tmp + "/" + output_path)
+            logger.info(f"Moved deployment files to {tmp}")
+            shutil.move(str(version_path), tmp)
+            for v in versions.versions:
+                shutil.move(output_path + "/" + v, tmp)
+            shutil.move(output_path + "/index.html", tmp)
+            if Path(".nojekyll").exists():
+                shutil.move(".nojekyll", tmp)
+
+            os.chdir(tmp)
             with socketserver.TCPServer(("", port), SimpleHTTPRequestHandler) as httpd:
                 logger.info(
                     f"Launching docs at http://localhost:{port}/ - use Ctrl-C to quit"
