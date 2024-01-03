@@ -336,7 +336,7 @@ def create_command(
     version: str,
 ) -> None:
     logger.debug(
-        f"create args: {input_path} {output_path} {push} {remote} {branch} {message} {version}"
+        f"create args: {input_path} {output_path} {remote} {branch} {message} {push} {version}"
     )
     _ = sync_remote(remote, branch)
 
@@ -419,7 +419,9 @@ def delete_command(
     push: bool,
     delete: typing.Tuple[str],
 ) -> None:
-    logger.debug(f"delete args: {input_path} {output_path} {remote} {branch} {push}")
+    logger.debug(
+        f"delete args: {input_path} {output_path} {remote} {branch} {message} {push} {delete}"
+    )
     _ = sync_remote(remote, branch)
 
     version_path = Path(output_path) / "versions.json"
@@ -479,7 +481,7 @@ def default_command(
     version: str,
 ) -> None:
     logger.debug(
-        f"default args: {input_path} {output_path} {remote} {branch} {message} {push}"
+        f"default args: {input_path} {output_path} {remote} {branch} {message} {push} {version}"
     )
 
     version_path = Path(output_path) / "versions.json"
@@ -545,7 +547,7 @@ def rename_command(
     dst: str,
 ) -> None:
     logger.debug(
-        f"rename args: {input_path} {output_path} {remote} {branch} {push} {src} {dst}"
+        f"rename args: {input_path} {output_path} {remote} {branch} {message} {push} {src} {dst}"
     )
 
     if src == dst:
@@ -626,7 +628,7 @@ def rename_command(
 @opt_remote
 @opt_branch
 def list_command(input_path: str, output_path: str, remote: str, branch: str) -> None:
-    logger.debug(f"list {input_path} {output_path} {remote}/{branch}")
+    logger.debug(f"list args: {input_path} {output_path} {remote} {branch}")
     _ = sync_remote(remote, branch)
 
     version_path = Path(output_path) / "versions.json"
@@ -643,7 +645,7 @@ def list_command(input_path: str, output_path: str, remote: str, branch: str) ->
 def serve(
     input_path: str, output_path: str, remote: str, branch: str, port: int
 ) -> None:
-    logger.debug(f"serve {input_path} {output_path} {remote}/{branch}")
+    logger.debug(f"serve args: {input_path} {output_path} {remote} {branch} {port}")
     _ = sync_remote(remote, branch)
 
     version_path = Path(output_path) / "versions.json"
