@@ -90,6 +90,8 @@ def versioned_docs(session: nox.Session) -> None:
     Build the versioned docs. Pass "--help" to see all options.
     """
     session.install(".[docs]")
+    if "--help" not in session.posargs:
+        session.posargs.extend(["-b", "gh-pages"])
     session.run("sphinx_deployment", *session.posargs)
 
 

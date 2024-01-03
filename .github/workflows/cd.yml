@@ -83,7 +83,6 @@ jobs:
       - name: Generate versioned docs
         env:
           VERSION_MODE: minor
-          VERSION_BRANCH: gh-pages
         shell: bash
         run: |
           if [[ "${{ github.ref_name }}" == "${{ github.event.repository.default_branch }}" ]]; then
@@ -111,7 +110,7 @@ jobs:
             fi
           fi
 
-          nox -s versioned_docs -- create -b ${VERSION_BRANCH} -O . --push ${version_deploy}
+          nox -s versioned_docs -- create -O . --push ${version_deploy}
           if [[ "${{ github.event_name }}" == "release" && "${{ github.event.action }}" == "published" ]]; then
-            nox -s versioned_docs -- default -b ${VERSION_BRANCH} -O . --push ${version_deploy}
+            nox -s versioned_docs -- default -O . --push ${version_deploy}
           fi
