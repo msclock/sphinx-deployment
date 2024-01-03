@@ -2,10 +2,12 @@
 <html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Changelog" href="changelog.html" /><link rel="prev" title="sphinx-deployment" href="index.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 --><title>Index - sphinx-deployment documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/versioning/css/rtd.css" />
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Contributing - sphinx-deployment documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/versioning/css/rtd.css" />
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -135,7 +137,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -156,9 +158,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API docs</span></p>
@@ -183,7 +185,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -191,189 +194,125 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#V"><strong>V</strong></a></div>
+          <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h1>
+<p>See the <a class="reference external" href="https://learn.scientific-python.org/development/">Scientific Python Developer Guide</a> for a detailed
+description of best practices for developing scientific packages.</p>
+<section id="quick-development">
+<h2>Quick development<a class="headerlink" href="#quick-development" title="Link to this heading">#</a></h2>
+<p>The fastest way to start with development is to use nox. If you don’t have nox,
+you can use <code class="docutils literal notranslate"><span class="pre">pipx</span> <span class="pre">run</span> <span class="pre">nox</span></code> to run it without installing, or <code class="docutils literal notranslate"><span class="pre">pipx</span> <span class="pre">install</span> <span class="pre">nox</span></code>.
+If you don’t have pipx (pip for applications), then you can install with
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pipx</span></code> (the only case were installing an application with regular
+pip is reasonable). If you use macOS, then pipx and nox are both in brew, use
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">pipx</span> <span class="pre">nox</span></code>.</p>
+<p>To use, run <code class="docutils literal notranslate"><span class="pre">nox</span></code>. This will lint and test using every installed version of
+Python on your system, skipping ones that are not installed. You can also run
+specific jobs:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nox<span class="w"> </span>-s<span class="w"> </span>lint<span class="w">  </span><span class="c1"># Lint only</span>
+<span class="gp">$ </span>nox<span class="w"> </span>-s<span class="w"> </span>tests<span class="w">  </span><span class="c1"># Python tests</span>
+<span class="gp">$ </span>nox<span class="w"> </span>-s<span class="w"> </span>docs<span class="w"> </span>--<span class="w"> </span>serve<span class="w">  </span><span class="c1"># Build and serve the docs</span>
+<span class="gp">$ </span>nox<span class="w"> </span>-s<span class="w"> </span>build<span class="w">  </span><span class="c1"># Make an SDist and wheel</span>
+</pre></div>
+</div>
+<p>Nox handles everything for you, including setting up an temporary virtual
+environment for each run.</p>
 </section>
-<section id="A" class="genindex-section">
-  <h2>A</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Versions.add">add() (sphinx_deployment.cli.Versions method)</a>
-</li>
-    </ul></td>
-  </tr></table>
+<section id="setting-up-a-development-environment-manually">
+<h2>Setting up a development environment manually<a class="headerlink" href="#setting-up-a-development-environment-manually" title="Link to this heading">#</a></h2>
+<p>You can set up a development environment by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>./.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-v<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+<p>If you have the
+<a class="reference external" href="https://github.com/brettcannon/python-launcher">Python Launcher for Unix</a>, you
+can instead do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+py<span class="w"> </span>-m<span class="w"> </span>install<span class="w"> </span>-v<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
 </section>
-
-<section id="C" class="genindex-section">
-  <h2>C</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.commit_changes">commit_changes() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-  </tr></table>
+<section id="post-setup">
+<h2>Post setup<a class="headerlink" href="#post-setup" title="Link to this heading">#</a></h2>
+<p>You should prepare pre-commit, which will help you by checking that commits pass
+required checks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pre-commit<span class="w"> </span><span class="c1"># or brew install pre-commit on macOS</span>
+pre-commit<span class="w"> </span>install<span class="w"> </span><span class="c1"># Will install a pre-commit hook into the git repo</span>
+</pre></div>
+</div>
+<p>You can also/alternatively run <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span></code> (changes only) or
+<code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code> to check even without installing the hook.</p>
 </section>
-
-<section id="D" class="genindex-section">
-  <h2>D</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Versions.default">default (sphinx_deployment.cli.Versions attribute)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Versions.delete">delete() (sphinx_deployment.cli.Versions method)</a>
-</li>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.dump_versions">dump_versions() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-  </tr></table>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
+<p>Use pytest to run the unit checks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
 </section>
-
-<section id="L" class="genindex-section">
-  <h2>L</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.list_versions">list_versions() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-  </tr></table>
+<section id="coverage">
+<h2>Coverage<a class="headerlink" href="#coverage" title="Link to this heading">#</a></h2>
+<p>Use pytest-cov to generate coverage reports:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--cov<span class="o">=</span>sphinx-deployment
+</pre></div>
+</div>
 </section>
-
-<section id="M" class="genindex-section">
-  <h2>M</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    module
-
-        <ul>
-          <li><a href="api/sphinx_deployment.html#module-sphinx_deployment">sphinx_deployment</a>
-</li>
-          <li><a href="api/sphinx_deployment.html#module-sphinx_deployment.cli">sphinx_deployment.cli</a>
-</li>
-          <li><a href="api/sphinx_deployment.html#module-sphinx_deployment.sphinx_ext">sphinx_deployment.sphinx_ext</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
+<section id="building-docs">
+<h2>Building docs<a class="headerlink" href="#building-docs" title="Link to this heading">#</a></h2>
+<p>You can build the docs using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nox<span class="w"> </span>-s<span class="w"> </span>docs
+</pre></div>
+</div>
+<p>You can see a preview with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nox<span class="w"> </span>-s<span class="w"> </span>docs<span class="w"> </span>--<span class="w"> </span>serve
+</pre></div>
+</div>
 </section>
-
-<section id="N" class="genindex-section">
-  <h2>N</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Version.name">name (sphinx_deployment.cli.Version attribute)</a>
-</li>
-    </ul></td>
-  </tr></table>
+<section id="pre-commit">
+<h2>Pre-commit<a class="headerlink" href="#pre-commit" title="Link to this heading">#</a></h2>
+<p>This project uses pre-commit for all style checking. While you can run it with
+nox, this is such an important tool that it deserves to be installed on its own.
+Install pre-commit and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>-a
+</pre></div>
+</div>
+<p>to check all files.</p>
 </section>
-
-<section id="P" class="genindex-section">
-  <h2>P</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.prepare_commit">prepare_commit() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.push_branch">push_branch() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-  </tr></table>
 </section>
-
-<section id="R" class="genindex-section">
-  <h2>R</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.redirect_impl">redirect_impl() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="S" class="genindex-section">
-  <h2>S</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.setup">setup() (in module sphinx_deployment)</a>
-
-        <ul>
-          <li><a href="api/sphinx_deployment.html#sphinx_deployment.sphinx_ext.setup">(in module sphinx_deployment.sphinx_ext)</a>
-</li>
-        </ul></li>
-        <li>
-    sphinx_deployment
-
-        <ul>
-          <li><a href="api/sphinx_deployment.html#module-sphinx_deployment">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    sphinx_deployment.cli
-
-        <ul>
-          <li><a href="api/sphinx_deployment.html#module-sphinx_deployment.cli">module</a>
-</li>
-        </ul></li>
-        <li>
-    sphinx_deployment.sphinx_ext
-
-        <ul>
-          <li><a href="api/sphinx_deployment.html#module-sphinx_deployment.sphinx_ext">module</a>
-</li>
-        </ul></li>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.sync_remote">sync_remote() (in module sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="T" class="genindex-section">
-  <h2>T</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Version.title">title (sphinx_deployment.cli.Version attribute)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="V" class="genindex-section">
-  <h2>V</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Version">Version (class in sphinx_deployment.cli)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Versions">Versions (class in sphinx_deployment.cli)</a>
-</li>
-        <li><a href="api/sphinx_deployment.html#sphinx_deployment.cli.Versions.versions">versions (sphinx_deployment.cli.Versions attribute)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="changelog.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Changelog</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -392,8 +331,33 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Contributing</a><ul>
+<li><a class="reference internal" href="#quick-development">Quick development</a></li>
+<li><a class="reference internal" href="#setting-up-a-development-environment-manually">Setting up a development environment manually</a></li>
+<li><a class="reference internal" href="#post-setup">Post setup</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#coverage">Coverage</a></li>
+<li><a class="reference internal" href="#building-docs">Building docs</a></li>
+<li><a class="reference internal" href="#pre-commit">Pre-commit</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
