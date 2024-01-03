@@ -13,7 +13,7 @@
 
 ### CI
 
-* configure release workfow ([30f27d3](https://github.com/msclock/sphinx-deployment/commit/30f27d3d440cf0326fc47f6078a4075a7dba38b8))
+* configure release workflow ([30f27d3](https://github.com/msclock/sphinx-deployment/commit/30f27d3d440cf0326fc47f6078a4075a7dba38b8))
 
 
 ### Docs
