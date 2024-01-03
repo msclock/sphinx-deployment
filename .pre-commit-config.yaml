@@ -1,6 +1,6 @@
 exclude: |
-  ^(
-    CHANGELOG.md
+  (?x)^(
+    LICENSE
   )
 
 repos:
@@ -44,6 +44,10 @@ repos:
       - id: prettier
         types_or: [yaml, markdown, html, css, scss, javascript, json]
         args: [--prose-wrap=always]
+        exclude: |
+          (?x)^(
+            CHANGELOG.md
+          )
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: "v0.1.5"
