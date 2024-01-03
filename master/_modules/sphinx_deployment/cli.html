@@ -159,6 +159,7 @@
   <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API docs</span></p>
@@ -879,6 +880,9 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;serve </span><span class="si">{</span><span class="n">input_path</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">remote</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">_</span> <span class="o">=</span> <span class="n">sync_remote</span><span class="p">(</span><span class="n">remote</span><span class="p">,</span> <span class="n">branch</span><span class="p">)</span>
 
+    <span class="n">version_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;versions.json&quot;</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="n">list_versions</span><span class="p">(</span><span class="n">branch</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">version_path</span><span class="p">))</span>
+
     <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmp</span><span class="p">:</span>
         <span class="n">rp</span> <span class="o">=</span> <span class="n">Repo</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
         <span class="n">rp</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
@@ -899,9 +903,15 @@
             <span class="p">]</span>
         <span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">tmp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">tmp</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">output_path</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved deployment files to </span><span class="si">{</span><span class="n">tmp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">version_path</span><span class="p">),</span> <span class="n">tmp</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">versions</span><span class="o">.</span><span class="n">versions</span><span class="p">:</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">v</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;/index.html&quot;</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.nojekyll&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s2">&quot;.nojekyll&quot;</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">socketserver</span><span class="o">.</span><span class="n">TCPServer</span><span class="p">((</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">),</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">)</span> <span class="k">as</span> <span class="n">httpd</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Launching docs at http://localhost:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">/ - use Ctrl-C to quit&quot;</span>
