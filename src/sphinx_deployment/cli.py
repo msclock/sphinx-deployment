@@ -178,8 +178,8 @@ def list_versions(branch: str, version_path: str) -> Versions:
         )
         version_dict = json.loads(versions_json_content)
         return Versions(**version_dict)
-    except Exception as e:
-        logger.warning(f"unable to checkout branch: {branch} \n{e}")
+    except Exception:
+        logger.warning(f"No versions found in branch: {branch} and creating new one")
         return Versions()
 
 
