@@ -101,7 +101,7 @@ def setup(app: Sphinx) -> dict[str, str | bool]:
     """
 
     if os.environ.get("SPHINX_DEPLOYMENT_VERSION", None):
-        logger.info(f"sphinx_deployment setups docs {version} from {app.confdir}")
+        logger.info(f"sphinx_deployment deploys docs {version} from {app.confdir}")
         app.connect("config-inited", _config_inited)
         app.connect("build-finished", _copy_custom_files)
 
