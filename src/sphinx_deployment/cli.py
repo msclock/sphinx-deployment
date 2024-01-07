@@ -141,8 +141,8 @@ def sync_remote(remote: str, branch: str) -> bool:
         rp = Repo(".")
         rp.remote(remote).fetch(f"{branch}:{branch}")
         return True
-    except Exception as e:
-        logger.warning(f"Sync failed with {remote}/{branch}:{e}")
+    except Exception:
+        logger.warning(f"Sync failed with {remote}/{branch}")
         return False
 
 
