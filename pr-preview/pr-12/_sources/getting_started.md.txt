@@ -25,12 +25,12 @@ a view list below the versioned items.
 ```python
 sphinx_deployment_dll = {
     "Links": {
-        "Repository": "your-repository-url",
-        "PYPI": "your-pypi-url",
-        "Another 1": "any-url-1",
+        "Repository": "set-the-repository-url",
+        "Pypi": "set-the-pypi-url",
+        "Another 1": "another-url-1",
     },
     "Another Section": {
-        "Another 2": "any-url-2",
+        "Another 2": "another-url-2",
     },
 }
 ```
