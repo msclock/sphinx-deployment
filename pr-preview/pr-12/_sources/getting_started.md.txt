@@ -18,7 +18,9 @@ extensions = [
     "sphinx_deployment",
 ]
 ```
-Configure the extension with the listed metadata optionally and it will generate a view list below the versioned items.
+
+Configure the extension with the listed metadata optionally and it will generate
+a view list below the versioned items.
 
 ```python
 sphinx_deployment_dll = {
@@ -29,6 +31,6 @@ sphinx_deployment_dll = {
     },
     "Another Section": {
         "Another 2": "any-url-2",
-    }
+    },
 }
 ```
