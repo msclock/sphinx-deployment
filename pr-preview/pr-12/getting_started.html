@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Contributing" href="contributing.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
-        <title>sphinx-deployment documentation</title>
+        <title>Getting Started - sphinx-deployment documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">sphinx-deployment  documentation</div></a>
+      <a href="index.html"><div class="brand">sphinx-deployment  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -145,7 +145,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
   <span class="sidebar-brand-text">sphinx-deployment  documentation</span>
@@ -157,8 +157,8 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Overview</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
@@ -199,53 +199,37 @@
           </label>
         </div>
         <article role="main">
-          <section id="sphinx-deployment">
-<h1>sphinx-deployment<a class="headerlink" href="#sphinx-deployment" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<!-- Extract content between SPHINX-START and SPHINX-END -->
-<p>A Sphinx plugin for deployment documentation. It provides a command
-<code class="docutils literal notranslate"><span class="pre">sphinx-deployment</span></code> to manage and facilitate versioned and customizable
-documentation deployment.</p>
-<section id="features">
-<h2>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Versioned documentation deployment management.</p></li>
-<li><p>Customizable list of deployment view.</p></li>
-</ul>
-</section>
-<section id="license">
-<h2>📜 License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
-<p>Apache License, for more details, see the
-<a class="reference external" href="https://github.com/msclock/sphinx-deployment/blob/master/LICENSE">LICENSE</a>
-file.</p>
-<!-- SPHINX-END -->
-</section>
-<section id="content">
-<h2>Content<a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
-</ul>
-</div>
-<!-- Disable to show when there is no api generation in the docs -->
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">API docs</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api/sphinx_deployment.html">sphinx_deployment package</a></li>
-</ul>
+          <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sphinx-deployment</span></code> package can be installed with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphixx-deployment
+</pre></div>
 </div>
 </section>
-<section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>Add the extension to your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># others</span>
+    <span class="s2">&quot;sphinx_deployment&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Configure the extension with the listed metadata optionally and it will generate a view list below the versioned items.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx_deployment_dll</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Repository&quot;</span><span class="p">:</span> <span class="s2">&quot;your-repository-url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PYPI&quot;</span><span class="p">:</span> <span class="s2">&quot;your-pypi-url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Another 1&quot;</span><span class="p">:</span> <span class="s2">&quot;any-url-1&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Another Section&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Another 2&quot;</span><span class="p">:</span> <span class="s2">&quot;any-url-2&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -254,15 +238,7 @@ file.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="contributing.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Contributing</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
+          
           
         </div>
         <div class="bottom-of-page">
@@ -294,13 +270,9 @@ file.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">sphinx-deployment</a><ul>
-<li><a class="reference internal" href="#features">Features</a></li>
-<li><a class="reference internal" href="#license">📜 License</a></li>
-<li><a class="reference internal" href="#content">Content</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
