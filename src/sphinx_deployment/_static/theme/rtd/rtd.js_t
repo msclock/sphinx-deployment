@@ -1,16 +1,4 @@
 /**
- * Handles the click event.
- *
- * @param {Event} event - The click event object.
- * @return {undefined} This function does not return a value.
- */
-function handleClick(event) {
-  if (event.currentTarget.classList.contains("shift-up"))
-    event.currentTarget.classList.remove("shift-up");
-  else event.currentTarget.classList.add("shift-up");
-}
-
-/**
  * Locates the URL of the versions.json file by recursively checking parent directories.
  *
  * @param {string} url - The URL of the current directory.
@@ -37,19 +25,19 @@ async function locateVersionsJsonUrl(url) {
 }
 
 window.addEventListener("DOMContentLoaded", async function () {
-  try {
-    var versionsJsonUrl = await locateVersionsJsonUrl(
-      this.window.location.href.substring(
-        0,
-        this.window.location.href.lastIndexOf("/"),
-      ),
-    );
-  } catch (error) {
-    console.error("Failed to find versions.json");
-  }
-  if (versionsJsonUrl === null) {
-    console.error("Failed to find versions.json");
-    return;
+  var cur_href_path = this.window.location.href.substring(0, this.window.location.href.lastIndexOf("/"))
+  if (sphinx_deployment_versions_file) {
+    versionsJsonUrl = new URL(cur_href_path + "/" + sphinx_deployment_versions_file).toString();
+  } else {
+    try {
+      var versionsJsonUrl = await locateVersionsJsonUrl(cur_href_path);
+    } catch (error) {
+      console.error("Failed to find versions.json");
+    }
+    if (versionsJsonUrl === null) {
+      console.error("Failed to find versions.json");
+      return;
+    }
   }
   var rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
   var currentVersionPath = this.window.location.href.substring(rootUrl.length);
@@ -83,7 +71,11 @@ window.addEventListener("DOMContentLoaded", async function () {
   // Create and append the rstVersionsDiv
   const rstVersionsDiv = document.createElement("div");
   rstVersionsDiv.setAttribute("class", "rst-versions rst-badge");
-  rstVersionsDiv.addEventListener("click", handleClick);
+  rstVersionsDiv.addEventListener("click", (e) => {
+    if (e.currentTarget.classList.contains("shift-up"))
+      e.currentTarget.classList.remove("shift-up");
+    else e.currentTarget.classList.add("shift-up");
+  });
   injectedDiv.appendChild(rstVersionsDiv);
 
   // Current version
@@ -136,6 +128,14 @@ window.addEventListener("DOMContentLoaded", async function () {
     dd.appendChild(link);
     dl.appendChild(dd);
   });
+
+  // Append customized items to Versions
+  var customizedItems = `{{ customizedItems }}`;
+
+  if (customizedItems) {
+    rstOtherVersionsDiv.innerHTML =
+      rstOtherVersionsDiv.innerHTML + customizedItems;
+  }
 
   // Append an hr element as a separator
   rstOtherVersionsDiv.appendChild(document.createElement("hr"));

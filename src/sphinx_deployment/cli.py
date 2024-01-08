@@ -359,7 +359,7 @@ def create_command(
                 f"with sphinx-deployment {__version__}"
             )
 
-        t = redirect_impl(DIR / "templates")
+        t = redirect_impl(DIR.joinpath("_static", "templates"))
         redirect_render = t.render(href_to_ver=version + "/index.html")
 
         with prepare_commit() as repo:
@@ -493,7 +493,7 @@ def default_command(
 
     versions.default = version
 
-    t = redirect_impl(DIR / "templates")
+    t = redirect_impl(DIR.joinpath("_static", "templates"))
     redirect_render = t.render(href_to_ver=version + "/index.html")
 
     if message == "":
@@ -573,7 +573,7 @@ def rename_command(
             f"with sphinx-deployment {__version__}"
         )
 
-    t = redirect_impl(DIR / "templates")
+    t = redirect_impl(DIR.joinpath("_static", "templates"))
     redirect_render = t.render(href_to_ver=dst + "/index.html")
 
     with prepare_commit() as repo:

@@ -5,6 +5,7 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+from jinja2 import Template
 from loguru import logger
 from sphinx.application import Sphinx
 from sphinx.config import Config
@@ -13,9 +14,10 @@ from sphinx.util.fileutil import copy_asset
 from ._version import version
 
 
-def _copy_custom_files(app: Sphinx, exc: Any) -> None:
+def _generate_deployment_assets(app: Sphinx, exc: Any) -> None:
     """
-    Copy custom files to the Sphinx output directory if the builder format is HTML and no exception occurred.
+    Generate the deployment assets to the Sphinx output directory
+    if the builder format is HTML and no exception occurred.
 
     Parameters:
         app (Sphinx): The Sphinx application object.
@@ -25,28 +27,24 @@ def _copy_custom_files(app: Sphinx, exc: Any) -> None:
         None
     """
     if app.builder.format == "html" and not exc:
-        dest_static_dir = Path(app.builder.outdir, "_static")
-        rc_dir = Path(__file__).parent.resolve()
-        _copy_assset_dir_impl(
-            dest_asset_dir=dest_static_dir.joinpath("versioning"),
-            src_assets_dir=rc_dir.joinpath("versioning"),
-        )
+        dst_static_dir = Path(app.builder.outdir, "_static")
+        src_static_dir = Path(__file__).parent.resolve().joinpath("_static")
+        dst_theme_dir = dst_static_dir.joinpath("theme", "rtd")
+        src_theme_dir = src_static_dir.joinpath("theme", "rtd")
 
+        if dst_theme_dir.exists():
+            shutil.rmtree(dst_theme_dir)
 
-def _copy_assset_dir_impl(dest_asset_dir: Path, src_assets_dir: Path) -> None:
-    """
-    Copy the contents of the source assets directory to the destination assets directory.
-
-    Args:
-        dest_asset_dir (Path): The path to the destination assets directory.
-        src_assets_dir (Path): The path to the source assets directory.
-
-    Returns:
-        None: This function does not return anything.
-    """
-    if Path(dest_asset_dir).exists():
-        shutil.rmtree(dest_asset_dir)
-    copy_asset(src_assets_dir, dest_asset_dir)
+        customized_tpl = src_static_dir.joinpath("templates", "rtd.html")
+        with customized_tpl.open("r", encoding="utf-8") as f:
+            t = Template(f.read(), autoescape=True, keep_trailing_newline=True)
+            rdr = t.render(sphinx_deployment_dll=app.config.sphinx_deployment_dll)
+            copy_asset(
+                src_theme_dir,
+                dst_theme_dir,
+                context={"customizedItems": rdr},
+                onerror=lambda file, e: logger.error(f"Failed to copy {file}: {e}"),
+            )
 
 
 def _html_page_context(
@@ -70,8 +68,23 @@ def _html_page_context(
         None
     """
     _ = (pagename, templatename, context, doctree)
-    app.add_css_file("versioning/css/rtd.css", priority=100)
-    app.add_js_file("versioning/js/rtd.js")
+
+    # Get the path to the versions.json file
+    context["versions_file"] = str(
+        Path(context["content_root"]) / ".." / "versions.json"
+    )
+
+    # Register css and js files
+    app.add_js_file(
+        None,
+        body="var sphinx_deployment_versions_file = '"
+        + context["versions_file"]
+        + "';",
+        priority=0,
+    )
+
+    app.add_css_file("theme/rtd/rtd.css", priority=600)
+    app.add_js_file("theme/rtd/rtd.js", priority=600)
 
 
 def _config_inited(app: Sphinx, config: Config) -> None:
@@ -102,8 +115,9 @@ def setup(app: Sphinx) -> dict[str, str | bool]:
 
     if os.environ.get("SPHINX_DEPLOYMENT_VERSION", None):
         logger.info(f"sphinx_deployment deploys docs {version} from {app.confdir}")
+        app.add_config_value("sphinx_deployment_dll", {}, "html")
         app.connect("config-inited", _config_inited)
-        app.connect("build-finished", _copy_custom_files)
+        app.connect("build-finished", _generate_deployment_assets)
 
     return {
         "version": version,

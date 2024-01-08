@@ -14,6 +14,20 @@
 
 <!-- SPHINX-START -->
 
-A Sphinx plugin for deployment documentation.
+A Sphinx plugin for deployment documentation. It provides a command
+`sphinx-deployment` to manage and facilitate versioned and customizable
+documentation deployment.
+
+## Features
+
+- Versioned documentation deployment management.
+- Customizable list of deployment view.
+- Deployments are managed based on Git.
+
+## License
+
+Apache License, for more details, see the
+[LICENSE](https://github.com/msclock/sphinx-deployment/blob/master/LICENSE)
+file.
 
 <!-- SPHINX-END -->
