@@ -340,7 +340,7 @@ def create_command(
     )
     _ = sync_remote(remote, branch)
 
-    version_path = Path(output_path) / "versions.json"
+    version_path = Path(output_path).joinpath("versions.json")
     versions = list_versions(branch, str(version_path))
     v = versions.add(version)
     if versions.default == "":
@@ -370,11 +370,11 @@ def create_command(
             else:
                 rp.heads[branch].checkout()
 
-            dest_dir = Path(output_path) / v.name
+            dest_dir = Path(output_path).joinpath(v.name)
             shutil.rmtree(str(dest_dir), ignore_errors=True)
             shutil.copytree(tmp, str(dest_dir), dirs_exist_ok=True)
 
-            redirect_html = Path(output_path) / "index.html"
+            redirect_html = Path(output_path).joinpath("index.html")
             if not redirect_html.exists():
                 with redirect_html.open(
                     mode="w",
@@ -424,7 +424,7 @@ def delete_command(
     )
     _ = sync_remote(remote, branch)
 
-    version_path = Path(output_path) / "versions.json"
+    version_path = Path(output_path).joinpath("versions.json")
     versions = list_versions(branch, str(version_path))
 
     if message == "":
@@ -441,7 +441,7 @@ def delete_command(
                 logger.warning(f"Version {del_ver} not found in {all_keys}")
                 continue
             versions.versions.pop(del_ver)
-            dest_dir = Path(output_path) / del_ver
+            dest_dir = Path(output_path).joinpath(del_ver)
             rp.index.remove(str(dest_dir), working_tree=True, r=True)
             if del_ver == versions.default:
                 rp.index.remove(output_path + "/index.html", working_tree=True)
@@ -484,7 +484,7 @@ def default_command(
         f"default args: {input_path} {output_path} {remote} {branch} {message} {push} {version}"
     )
 
-    version_path = Path(output_path) / "versions.json"
+    version_path = Path(output_path).joinpath("versions.json")
     versions = list_versions(branch, str(version_path))
 
     if version not in versions.versions:
@@ -506,7 +506,7 @@ def default_command(
         rp: Repo = repo
         rp.heads[branch].checkout()
 
-        root_redirect = Path(output_path) / "index.html"
+        root_redirect = Path(output_path).joinpath("index.html")
         with root_redirect.open(
             mode="w",
             encoding="utf-8",
@@ -556,7 +556,7 @@ def rename_command(
 
     _ = sync_remote(remote, branch)
 
-    version_path = Path(output_path) / "versions.json"
+    version_path = Path(output_path).joinpath("versions.json")
     versions = list_versions(branch, str(version_path))
 
     if src not in versions.versions:
@@ -597,7 +597,7 @@ def rename_command(
 
         rp.index.move([rename_src_path, rename_dest_path], skip_errors=True)
 
-        root_redirect = Path(output_path) / "index.html"
+        root_redirect = Path(output_path).joinpath("index.html")
         if versions.default == src:
             versions.default = dst
             with Path(root_redirect).open(
@@ -631,7 +631,7 @@ def list_command(input_path: str, output_path: str, remote: str, branch: str) ->
     logger.debug(f"list args: {input_path} {output_path} {remote} {branch}")
     _ = sync_remote(remote, branch)
 
-    version_path = Path(output_path) / "versions.json"
+    version_path = Path(output_path).joinpath("versions.json")
     versions = list_versions(branch, str(version_path))
     logger.debug("\n" + json.dumps(asdict(versions), indent=4, separators=(",", ": ")))
 
@@ -648,7 +648,7 @@ def serve(
     logger.debug(f"serve args: {input_path} {output_path} {remote} {branch} {port}")
     _ = sync_remote(remote, branch)
 
-    version_path = Path(output_path) / "versions.json"
+    version_path = Path(output_path).joinpath("versions.json")
     versions = list_versions(branch, str(version_path))
 
     with TemporaryDirectory() as tmp:
