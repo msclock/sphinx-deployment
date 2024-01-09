@@ -51,3 +51,10 @@ nitpick_ignore = [
 ]
 
 always_document_param_types = True
+
+sphinx_deployment_dll = {
+    "Links": {
+        "Repository": "https://github.com/msclock/sphinx-deployment/",
+        "PYPI": "https://pypi.org/project/sphinx-deployment/",
+    }
+}
