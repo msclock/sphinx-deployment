@@ -46,6 +46,6 @@ extension.
 
 ### GitLab
 
-The working template based on
-[GitLab CI](https://docs.gitlab.com/ee/ci/quick_start/README.html) are available
+The working template based on [GitLab CI](https://docs.gitlab.com/ee/ci/) are
+available
 [here](https://msclock.gitlab.io/gitlab-ci-templates/latest/docs/Sphinx/).
