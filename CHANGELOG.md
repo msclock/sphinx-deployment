@@ -1,3 +1,16 @@
+## [0.0.5](https://github.com/msclock/sphinx-deployment/compare/v0.0.4...v0.0.5) (2024-01-09)
+
+
+### Performance
+
+* opt version switch action ([#16](https://github.com/msclock/sphinx-deployment/issues/16)) ([f357508](https://github.com/msclock/sphinx-deployment/commit/f357508d98cdf6a775951a2646fb44db0ae3e901)), closes [#15](https://github.com/msclock/sphinx-deployment/issues/15)
+
+
+### Docs
+
+* add CI integration sections ([#13](https://github.com/msclock/sphinx-deployment/issues/13)) ([c3d050d](https://github.com/msclock/sphinx-deployment/commit/c3d050d578af3b3b009eafb22ab4a88d0e0d919c)), closes [#4](https://github.com/msclock/sphinx-deployment/issues/4)
+* fix the link to gitlab ([#14](https://github.com/msclock/sphinx-deployment/issues/14)) ([2028264](https://github.com/msclock/sphinx-deployment/commit/2028264514efe9ed3462bd6c808b2e3bd74e998d)), closes [#4](https://github.com/msclock/sphinx-deployment/issues/4)
+
 ## [0.0.4](https://github.com/msclock/sphinx-deployment/compare/v0.0.3...v0.0.4) (2024-01-09)
 
 
