@@ -1,3 +1,20 @@
+## [0.0.4](https://github.com/msclock/sphinx-deployment/compare/v0.0.3...v0.0.4) (2024-01-09)
+
+
+### Performance
+
+* template deployment list view ([#12](https://github.com/msclock/sphinx-deployment/issues/12)) ([bd29014](https://github.com/msclock/sphinx-deployment/commit/bd290144b41706583e739158b873161a7dd2ece6)), closes [#5](https://github.com/msclock/sphinx-deployment/issues/5) [#4](https://github.com/msclock/sphinx-deployment/issues/4)
+
+
+### Chores
+
+* configure license in pyproject.toml ([#11](https://github.com/msclock/sphinx-deployment/issues/11)) ([15e0a13](https://github.com/msclock/sphinx-deployment/commit/15e0a132c60cf93831f834a44c12953bc8af212e))
+
+
+### Docs
+
+* refine CONTRIBUTING.md ([38fe21d](https://github.com/msclock/sphinx-deployment/commit/38fe21d93f461b57fdd7759a8d386c94775185f4))
+
 ## [0.0.3](https://github.com/msclock/sphinx-deployment/compare/v0.0.2...v0.0.3) (2024-01-03)
 
 
