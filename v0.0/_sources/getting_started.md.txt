@@ -34,3 +34,18 @@ sphinx_deployment_dll = {
     },
 }
 ```
+
+## CI Workflow
+
+### GitHub
+
+Refer to the
+[GitHub Actions](https://github.com/msclock/sphinx-deployment/actions) workflow.
+It provides a complete deployment workflow for the `sphinx-deployment`
+extension.
+
+### GitLab
+
+The working template based on [GitLab CI](https://docs.gitlab.com/ee/ci/) are
+available
+[here](https://msclock.gitlab.io/gitlab-ci-templates/latest/docs/Sphinx/).
