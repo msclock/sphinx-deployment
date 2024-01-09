@@ -1,3 +1,10 @@
+## [0.0.6](https://github.com/msclock/sphinx-deployment/compare/v0.0.5...v0.0.6) (2024-01-09)
+
+
+### Performance
+
+* opt rtd css styles ([#18](https://github.com/msclock/sphinx-deployment/issues/18)) ([98c6a12](https://github.com/msclock/sphinx-deployment/commit/98c6a1237da06d55da4a3ea75e063e2e26d0f39e)), closes [#17](https://github.com/msclock/sphinx-deployment/issues/17)
+
 ## [0.0.5](https://github.com/msclock/sphinx-deployment/compare/v0.0.4...v0.0.5) (2024-01-09)
 
 
