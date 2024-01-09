@@ -11,7 +11,7 @@
             "module": "sphinx_deployment",
             "console": "internalConsole",
             "python": "${command:python.interpreterPath}",
-            "args": ["create", "v0.0"],
+            "args": ["create", "master"],
             "stopOnEntry": true,
             "justMyCode": false
         },
