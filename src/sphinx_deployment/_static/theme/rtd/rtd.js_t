@@ -24,6 +24,32 @@ async function locateVersionsJsonUrl(url) {
   return null;
 }
 
+/**
+ * Change the version of the root URL to the specified version.
+ *
+ * @param {string} rootUrl - The root URL.
+ * @param {string} currentVersion - The current version.
+ * @param {string} currentVersionPath - The path to the current version.
+ * @param {object} ver - The version object containing the name of the new version.
+ * @return {void} This function does not return a value.
+ */
+function changeVersion(rootUrl, currentVersion, currentVersionPath, ver) {
+  const new_url = rootUrl + currentVersionPath.replace(currentVersion, ver.name);
+  if (new_url != window.location.href) {
+    fetch(new_url)
+      .then((response) => {
+        if (response.ok) {
+          window.location.href = new_url;
+        } else {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+      })
+      .catch((_) => {
+        window.location.href = rootUrl + "/" + ver.name + "/";
+      });
+  }
+};
+
 window.addEventListener("DOMContentLoaded", async function () {
   var cur_href_path = this.window.location.href.substring(0, this.window.location.href.lastIndexOf("/"))
   if (sphinx_deployment_versions_file) {
@@ -39,9 +65,9 @@ window.addEventListener("DOMContentLoaded", async function () {
       return;
     }
   }
-  var rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
-  var currentVersionPath = this.window.location.href.substring(rootUrl.length);
-  var currentVersion = currentVersionPath.match(/\/([^\/]+)\//)[1];
+  const rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
+  const currentVersionPath = this.window.location.href.substring(rootUrl.length);
+  const currentVersion = currentVersionPath.match(/\/([^\/]+)\//)[1];
 
   const response = await fetch(versionsJsonUrl);
   if (!response.ok) {
@@ -71,16 +97,16 @@ window.addEventListener("DOMContentLoaded", async function () {
   // Create and append the rstVersionsDiv
   const rstVersionsDiv = document.createElement("div");
   rstVersionsDiv.setAttribute("class", "rst-versions rst-badge");
-  rstVersionsDiv.addEventListener("click", (e) => {
-    if (e.currentTarget.classList.contains("shift-up"))
-      e.currentTarget.classList.remove("shift-up");
-    else e.currentTarget.classList.add("shift-up");
-  });
   injectedDiv.appendChild(rstVersionsDiv);
 
   // Current version
   const rstCurrentVersionSpan = document.createElement("span");
   rstCurrentVersionSpan.setAttribute("class", "rst-current-version");
+  rstCurrentVersionSpan.addEventListener("click", (e) => {
+    if (e.currentTarget.parentNode.classList.contains("shift-up"))
+      e.currentTarget.parentNode.classList.remove("shift-up");
+    else e.currentTarget.parentNode.classList.add("shift-up");
+  });
   rstVersionsDiv.appendChild(rstCurrentVersionSpan);
 
   // Append a book icon
@@ -123,7 +149,8 @@ window.addEventListener("DOMContentLoaded", async function () {
     const dd = document.createElement("dd");
     dd.setAttribute("class", "rtd-current-item");
     const link = document.createElement("a");
-    link.setAttribute("href", rootUrl + "/" + ver.name + "/");
+    link.setAttribute("href", "javascript:void(0)");
+    link.setAttribute("onclick", `changeVersion('${rootUrl}', '${currentVersion}', '${currentVersionPath}', ${JSON.stringify(ver)})`);
     link.appendChild(document.createTextNode(ver.name));
     dd.appendChild(link);
     dl.appendChild(dd);
