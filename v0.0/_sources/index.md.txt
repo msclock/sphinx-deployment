@@ -21,6 +21,7 @@
 :glob:
 
 Overview <self>
+getting_started
 contributing
 changelog
 ```
