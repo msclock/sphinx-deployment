@@ -1,7 +1,3 @@
-.rst-other-versions dl {
-  margin: 0;
-}
-
 a .fa {
   display: inline-block;
   text-decoration: inherit;
@@ -142,4 +138,27 @@ a .fa {
   .rst-versions.shift {
     display: block;
   }
+}
+
+/* Please keep RTD badge displayed */
+.rst-versions.rst-badge {
+  display: block;
+  bottom: 50px;
+  height: auto;
+}
+
+.rst-other-versions {
+  text-align: left;
+}
+
+.rst-other-versions a {
+  border: 0;
+}
+
+.rst-other-versions dl {
+  margin: 0;
+}
+
+.rtd-current-item {
+  font-weight: bold;
 }
