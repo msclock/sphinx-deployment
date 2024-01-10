@@ -168,7 +168,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   </dd>
   
   <dd class="rtd-current-item">
-    <a href="https://pypi.org/project/sphinx-deployment/">PYPI</a>
+    <a href="https://pypi.org/project/sphinx-deployment/">Index</a>
   </dd>
   
 </dl>
