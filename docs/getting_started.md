@@ -26,7 +26,7 @@ a view list below the versioned items.
 sphinx_deployment_dll = {
     "Links": {
         "Repository": "set-the-repository-url",
-        "Pypi": "set-the-pypi-url",
+        "Index": "set-the-pypi-url",
         "Another 1": "another-url-1",
     },
     "Another Section": {
