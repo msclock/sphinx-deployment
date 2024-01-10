@@ -10,7 +10,8 @@ pip install sphixx-deployment
 
 ## Usage
 
-Add the extension to your `conf.py`:
+To use the `sphinx-deployment` extension, add it to the extensions list in your
+`conf.py` file:
 
 ```python
 extensions = [
@@ -19,8 +20,8 @@ extensions = [
 ]
 ```
 
-Configure the extension with the listed metadata optionally and it will generate
-a view list below the versioned items.
+You can configure the extension by adding the following metadata to your
+`conf.py` file:
 
 ```python
 sphinx_deployment_dll = {
@@ -35,17 +36,18 @@ sphinx_deployment_dll = {
 }
 ```
 
+This configuration will generate a view list below the versioned items.
+
 ## CI Workflow
 
 ### GitHub
 
-Refer to the
-[GitHub Actions](https://github.com/msclock/sphinx-deployment/actions) workflow.
-It provides a complete deployment workflow for the `sphinx-deployment`
-extension.
+For GitHub users, we provide a complete deployment workflow using
+[GitHub Actions](https://github.com/msclock/sphinx-deployment/actions). You can
+refer to the workflow file for more details.
 
 ### GitLab
 
-The working template based on [GitLab CI](https://docs.gitlab.com/ee/ci/) are
-available
+If you're using GitLab, we have a working template based on
+[GitLab CI](https://docs.gitlab.com/ee/ci/). You can find the template
 [here](https://msclock.gitlab.io/gitlab-ci-templates/latest/docs/Sphinx/).
