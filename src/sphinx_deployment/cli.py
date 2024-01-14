@@ -346,7 +346,7 @@ def create_command(
     if versions.default == "":
         versions.default = v.name
 
-    os.environ["SPHINX_DEPLOYMENT_VERSION"] = __version__
+    os.environ["SPHINX_DEPLOYMENT_CURRENT_VERSION"] = version
     with TemporaryDirectory() as tmp:
         result = build_main(["-b", "html", input_path, tmp])
         if result == 2:

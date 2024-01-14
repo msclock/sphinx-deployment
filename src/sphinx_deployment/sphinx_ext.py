@@ -38,7 +38,10 @@ def _generate_deployment_assets(app: Sphinx, exc: Any) -> None:
         customized_tpl = src_static_dir.joinpath("templates", "rtd.html")
         with customized_tpl.open("r", encoding="utf-8") as f:
             t = Template(f.read(), autoescape=True, keep_trailing_newline=True)
-            rdr = t.render(sphinx_deployment_dll=app.config.sphinx_deployment_dll)
+            rdr = t.render(
+                sphinx_deployment_current_version=app.config.sphinx_deployment_current_version,
+                sphinx_deployment_dll=app.config.sphinx_deployment_dll,
+            )
             copy_asset(
                 src_theme_dir,
                 dst_theme_dir,
@@ -70,16 +73,22 @@ def _html_page_context(
     _ = (pagename, templatename, context, doctree)
 
     # Get the path to the versions.json file
-    context["versions_file"] = str(
+    context["sphinx_deployment_versions_file"] = str(
         Path(context["content_root"]) / ".." / "versions.json"
     )
+
+    # Expose the current versiont to the template
+    context[
+        "sphinx_deployment_current_version"
+    ] = app.config.sphinx_deployment_current_version
 
     # Register css and js files
     app.add_js_file(
         None,
-        body="var sphinx_deployment_versions_file = '"
-        + context["versions_file"]
-        + "';",
+        body=f"""
+        var sphinx_deployment_versions_file = '{context["sphinx_deployment_versions_file"]}';
+        var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
+        """,
         priority=0,
     )
 
@@ -113,9 +122,16 @@ def setup(app: Sphinx) -> dict[str, str | bool]:
         dict[str, str | bool]: A dictionary metadata about the extension.
     """
 
-    if os.environ.get("SPHINX_DEPLOYMENT_VERSION", None):
-        logger.info(f"sphinx_deployment deploys docs {version} from {app.confdir}")
+    current_version = os.environ.get("SPHINX_DEPLOYMENT_CURRENT_VERSION", None)
+    if current_version:
+        logger.info(
+            f"sphinx_deployment {version} deploys "
+            f"versioned docs {current_version} from {app.confdir}"
+        )
         app.add_config_value("sphinx_deployment_dll", {}, "html")
+        app.add_config_value(
+            "sphinx_deployment_current_version", current_version, "html"
+        )
         app.connect("config-inited", _config_inited)
         app.connect("build-finished", _generate_deployment_assets)
 
