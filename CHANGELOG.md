@@ -1,3 +1,21 @@
+## [0.0.7](https://github.com/msclock/sphinx-deployment/compare/v0.0.6...v0.0.7) (2024-01-15)
+
+
+### Performance
+
+* opt version context ([#27](https://github.com/msclock/sphinx-deployment/issues/27)) ([9c5361c](https://github.com/msclock/sphinx-deployment/commit/9c5361c7e2bd9ad0795f4c0bd572886fd1aab739)), closes [#26](https://github.com/msclock/sphinx-deployment/issues/26)
+
+
+### CI
+
+* opt closing pages preview ([#25](https://github.com/msclock/sphinx-deployment/issues/25)) ([b178551](https://github.com/msclock/sphinx-deployment/commit/b178551220ea7abbf6e45e53a028074b8ac0d904)), closes [#24](https://github.com/msclock/sphinx-deployment/issues/24)
+
+
+### Docs
+
+* refine the getting started md ([#23](https://github.com/msclock/sphinx-deployment/issues/23)) ([25b070d](https://github.com/msclock/sphinx-deployment/commit/25b070de85e44501c53913c3b33337eb39f93c58)), closes [#22](https://github.com/msclock/sphinx-deployment/issues/22)
+* rename PYPI to Index in links ([#21](https://github.com/msclock/sphinx-deployment/issues/21)) ([3a07019](https://github.com/msclock/sphinx-deployment/commit/3a07019713cc4431c257f6147d2bf966b46ba699)), closes [#20](https://github.com/msclock/sphinx-deployment/issues/20)
+
 ## [0.0.6](https://github.com/msclock/sphinx-deployment/compare/v0.0.5...v0.0.6) (2024-01-09)
 
 
