@@ -212,19 +212,20 @@
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<p>Add the extension to your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<p>To use the <code class="docutils literal notranslate"><span class="pre">sphinx-deployment</span></code> extension, add it to the extensions list in your
+<code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="c1"># others</span>
     <span class="s2">&quot;sphinx_deployment&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>Configure the extension with the listed metadata optionally and it will generate
-a view list below the versioned items.</p>
+<p>You can configure the extension by adding the following metadata to your
+<code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx_deployment_dll</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Links&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;Repository&quot;</span><span class="p">:</span> <span class="s2">&quot;set-the-repository-url&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Pypi&quot;</span><span class="p">:</span> <span class="s2">&quot;set-the-pypi-url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Index&quot;</span><span class="p">:</span> <span class="s2">&quot;set-the-pypi-url&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Another 1&quot;</span><span class="p">:</span> <span class="s2">&quot;another-url-1&quot;</span><span class="p">,</span>
     <span class="p">},</span>
     <span class="s2">&quot;Another Section&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -233,20 +234,20 @@ a view list below the versioned items.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>This configuration will generate a view list below the versioned items.</p>
 </section>
 <section id="ci-workflow">
 <h2>CI Workflow<a class="headerlink" href="#ci-workflow" title="Link to this heading">#</a></h2>
 <section id="github">
 <h3>GitHub<a class="headerlink" href="#github" title="Link to this heading">#</a></h3>
-<p>Refer to the
-<a class="reference external" href="https://github.com/msclock/sphinx-deployment/actions">GitHub Actions</a> workflow.
-It provides a complete deployment workflow for the <code class="docutils literal notranslate"><span class="pre">sphinx-deployment</span></code>
-extension.</p>
+<p>For GitHub users, we provide a complete deployment workflow using
+<a class="reference external" href="https://github.com/msclock/sphinx-deployment/actions">GitHub Actions</a>. You can
+refer to the workflow file for more details.</p>
 </section>
 <section id="gitlab">
 <h3>GitLab<a class="headerlink" href="#gitlab" title="Link to this heading">#</a></h3>
-<p>The working template based on <a class="reference external" href="https://docs.gitlab.com/ee/ci/">GitLab CI</a> are
-available
+<p>If you’re using GitLab, we have a working template based on
+<a class="reference external" href="https://docs.gitlab.com/ee/ci/">GitLab CI</a>. You can find the template
 <a class="reference external" href="https://msclock.gitlab.io/gitlab-ci-templates/latest/docs/Sphinx/">here</a>.</p>
 </section>
 </section>
@@ -326,7 +327,10 @@ available
       
     </aside>
   </div>
-</div><script>var sphinx_deployment_versions_file = '../versions.json';</script>
+</div><script>
+        var sphinx_deployment_versions_file = '../versions.json';
+        var sphinx_deployment_current_version = 'v0.0';
+        </script>
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
