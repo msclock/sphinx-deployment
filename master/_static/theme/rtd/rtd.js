@@ -53,7 +53,7 @@ function changeVersion(rootUrl, currentVersion, currentVersionPath, ver) {
 window.addEventListener("DOMContentLoaded", async function () {
   var cur_href_path = this.window.location.href.substring(0, this.window.location.href.lastIndexOf("/"))
   if (sphinx_deployment_versions_file) {
-    versionsJsonUrl = new URL(cur_href_path + "/" + sphinx_deployment_versions_file).toString();
+    var versionsJsonUrl = new URL(cur_href_path + "/" + sphinx_deployment_versions_file).toString();
   } else {
     try {
       var versionsJsonUrl = await locateVersionsJsonUrl(cur_href_path);
@@ -65,9 +65,15 @@ window.addEventListener("DOMContentLoaded", async function () {
       return;
     }
   }
-  const rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
-  const currentVersionPath = this.window.location.href.substring(rootUrl.length);
-  const currentVersion = currentVersionPath.match(/\/([^\/]+)\//)[1];
+
+  var rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
+  if (sphinx_deployment_current_version) {
+    var currentVersionPath = "/" + sphinx_deployment_current_version + "/";
+    var currentVersion = sphinx_deployment_current_version;
+  } else {
+    var currentVersionPath = this.window.location.href.substring(rootUrl.length);
+    var currentVersion = currentVersionPath.match(/\/([^\/]+)\//)[1];
+  }
 
   const response = await fetch(versionsJsonUrl);
   if (!response.ok) {
