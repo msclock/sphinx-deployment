@@ -34,12 +34,13 @@ async function locateVersionsJsonUrl(url) {
  * @return {void} This function does not return a value.
  */
 function changeVersion(rootUrl, currentVersion, currentVersionPath, ver) {
-  const new_url = rootUrl + currentVersionPath.replace(currentVersion, ver.name);
-  if (new_url != window.location.href) {
-    fetch(new_url)
+  const newVersionPath = currentVersionPath.replace(currentVersion, ver.name);
+  const newUrl = window.location.href.replace(currentVersionPath, newVersionPath)
+  if (newUrl != window.location.href) {
+    fetch(newUrl)
       .then((response) => {
         if (response.ok) {
-          window.location.href = new_url;
+          window.location.href = newUrl;
         } else {
           throw new Error(`${response.status} ${response.statusText}`);
         }
