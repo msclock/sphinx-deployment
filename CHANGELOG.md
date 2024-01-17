@@ -1,3 +1,15 @@
+## [0.0.8](https://github.com/msclock/sphinx-deployment/compare/v0.0.7...v0.0.8) (2024-01-17)
+
+
+### Bug Fixes
+
+* redirect to a new version ([#31](https://github.com/msclock/sphinx-deployment/issues/31)) ([40ab807](https://github.com/msclock/sphinx-deployment/commit/40ab807b278f55b17e9a48789c08658522cddbc8)), closes [#30](https://github.com/msclock/sphinx-deployment/issues/30)
+
+
+### Chores
+
+* change the license copyright date ([#29](https://github.com/msclock/sphinx-deployment/issues/29)) ([5b2ae72](https://github.com/msclock/sphinx-deployment/commit/5b2ae724b52b2796df618b5e08af353a1004ae4c))
+
 ## [0.0.7](https://github.com/msclock/sphinx-deployment/compare/v0.0.6...v0.0.7) (2024-01-15)
 
 
