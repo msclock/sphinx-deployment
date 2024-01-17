@@ -1,5 +1,5 @@
 """
-Copyright (c) 2023 msclock. All rights reserved.
+Copyright (c) 2023-2024 msclock. All rights reserved.
 
 sphinx-deployment: A versioned documentation deployment tool for sphinx.
 """

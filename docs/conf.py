@@ -6,7 +6,7 @@ from pathlib import Path
 sys.path.append(Path("../src").resolve())
 
 project = "sphinx-deployment"
-copyright = "2023, msclock"
+copyright = "2023-2024, msclock"
 author = "msclock"
 
 extensions = [
