@@ -1,3 +1,10 @@
+## [0.0.9](https://github.com/msclock/sphinx-deployment/compare/v0.0.8...v0.0.9) (2024-01-21)
+
+
+### Performance
+
+* opt js load ([#33](https://github.com/msclock/sphinx-deployment/issues/33)) ([2f1ea38](https://github.com/msclock/sphinx-deployment/commit/2f1ea38b95703a6917b5176ca5c171a3dd53e5b1)), closes [#32](https://github.com/msclock/sphinx-deployment/issues/32)
+
 ## [0.0.8](https://github.com/msclock/sphinx-deployment/compare/v0.0.7...v0.0.8) (2024-01-17)
 
 
