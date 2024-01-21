@@ -73,7 +73,7 @@ def _html_page_context(
     _ = (pagename, templatename, context, doctree)
 
     # Get the path to the versions.json file
-    context["sphinx_deployment_versions_file"] = str(
+    sphinx_deployment_versions_file = str(
         Path(context["content_root"]) / ".." / "versions.json"
     )
 
@@ -86,8 +86,9 @@ def _html_page_context(
     app.add_js_file(
         None,
         body=f"""
-        var sphinx_deployment_versions_file = '{context["sphinx_deployment_versions_file"]}';
         var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
+        var versionsJsonUrl = new URL(window.location.href + '{sphinx_deployment_versions_file}');
+        versionsJsonUrl  = versionsJsonUrl.toString()
         """,
         priority=0,
     )
