@@ -275,7 +275,7 @@
     <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">)</span>
 
     <span class="c1"># Get the path to the versions.json file</span>
-    <span class="n">context</span><span class="p">[</span><span class="s2">&quot;sphinx_deployment_versions_file&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
+    <span class="n">sphinx_deployment_versions_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
         <span class="n">Path</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;content_root&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;versions.json&quot;</span>
     <span class="p">)</span>
 
@@ -288,8 +288,9 @@
     <span class="n">app</span><span class="o">.</span><span class="n">add_js_file</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">body</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        var sphinx_deployment_versions_file = &#39;</span><span class="si">{</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;sphinx_deployment_versions_file&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;;</span>
 <span class="s2">        var sphinx_deployment_current_version = &#39;</span><span class="si">{</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;sphinx_deployment_current_version&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;;</span>
+<span class="s2">        var versionsJsonUrl = new URL(window.location.href + &#39;</span><span class="si">{</span><span class="n">sphinx_deployment_versions_file</span><span class="si">}</span><span class="s2">&#39;);</span>
+<span class="s2">        versionsJsonUrl  = versionsJsonUrl.toString()</span>
 <span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
         <span class="n">priority</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="p">)</span>
@@ -378,8 +379,9 @@
     </aside>
   </div>
 </div><script>
-        var sphinx_deployment_versions_file = '../../../versions.json';
         var sphinx_deployment_current_version = 'master';
+        var versionsJsonUrl = new URL(window.location.href + '../../../versions.json');
+        versionsJsonUrl  = versionsJsonUrl.toString()
         </script>
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>

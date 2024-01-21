@@ -1,30 +1,4 @@
 /**
- * Locates the URL of the versions.json file by recursively checking parent directories.
- *
- * @param {string} url - The URL of the current directory.
- * @return {string} The URL of the versions.json file, or null if not found.
- */
-async function locateVersionsJsonUrl(url) {
-  let checkUrl = url.endsWith("/") ? url.slice(0, -1) : url;
-  let response;
-
-  while (checkUrl !== "") {
-    try {
-      response = await fetch(checkUrl + "/versions.json");
-      if (response.ok) {
-        return checkUrl + "/versions.json";
-      }
-    } catch (error) {
-      console.warn("Failed to find versions.json at " + checkUrl + ":", error);
-    }
-
-    checkUrl = checkUrl.substring(0, checkUrl.lastIndexOf("/"));
-  }
-
-  return null;
-}
-
-/**
  * Change the version of the root URL to the specified version.
  *
  * @param {string} rootUrl - The root URL.
@@ -52,29 +26,14 @@ function changeVersion(rootUrl, currentVersion, currentVersionPath, ver) {
 };
 
 window.addEventListener("DOMContentLoaded", async function () {
-  var cur_href_path = this.window.location.href.substring(0, this.window.location.href.lastIndexOf("/"))
-  if (sphinx_deployment_versions_file) {
-    var versionsJsonUrl = new URL(cur_href_path + "/" + sphinx_deployment_versions_file).toString();
-  } else {
-    try {
-      var versionsJsonUrl = await locateVersionsJsonUrl(cur_href_path);
-    } catch (error) {
-      console.error("Failed to find versions.json");
-    }
-    if (versionsJsonUrl === null) {
-      console.error("Failed to find versions.json");
-      return;
-    }
+  if (!versionsJsonUrl || !sphinx_deployment_current_version) {
+    console.error("versionsJsonUrl or sphinx_deployment_current_version is not set");
+    return;
   }
 
   var rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
-  if (sphinx_deployment_current_version) {
-    var currentVersionPath = "/" + sphinx_deployment_current_version + "/";
-    var currentVersion = sphinx_deployment_current_version;
-  } else {
-    var currentVersionPath = this.window.location.href.substring(rootUrl.length);
-    var currentVersion = currentVersionPath.match(/\/([^\/]+)\//)[1];
-  }
+  var currentVersionPath = "/" + sphinx_deployment_current_version + "/";
+  var currentVersion = sphinx_deployment_current_version;
 
   const response = await fetch(versionsJsonUrl);
   if (!response.ok) {

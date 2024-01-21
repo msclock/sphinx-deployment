@@ -400,8 +400,9 @@
     </aside>
   </div>
 </div><script>
-        var sphinx_deployment_versions_file = '../versions.json';
         var sphinx_deployment_current_version = 'master';
+        var versionsJsonUrl = new URL(window.location.href + '../versions.json');
+        versionsJsonUrl  = versionsJsonUrl.toString()
         </script>
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
