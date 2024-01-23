@@ -1,3 +1,10 @@
+## [0.0.10](https://github.com/msclock/sphinx-deployment/compare/v0.0.9...v0.0.10) (2024-01-23)
+
+
+### Performance
+
+* js and css loads and template rename ([#35](https://github.com/msclock/sphinx-deployment/issues/35)) ([10b87a3](https://github.com/msclock/sphinx-deployment/commit/10b87a3f3440a910f397c6b8fe72ffd06e631692)), closes [#34](https://github.com/msclock/sphinx-deployment/issues/34)
+
 ## [0.0.9](https://github.com/msclock/sphinx-deployment/compare/v0.0.8...v0.0.9) (2024-01-21)
 
 
