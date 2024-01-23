@@ -34,7 +34,10 @@ def _generate_deployment_assets(app: Sphinx, exc: Any) -> None:
         if dst_theme_dir.exists():
             shutil.rmtree(dst_theme_dir)
 
-        customized_tpl = src_static_dir.joinpath("templates", "rtd.html")
+        customized_tpl = src_static_dir.joinpath(
+            "templates",
+            "sphinx_deployment_dll.html",
+        )
         with customized_tpl.open("r", encoding="utf-8") as f:
             t = Template(f.read(), autoescape=True, keep_trailing_newline=True)
             rdr = t.render(
