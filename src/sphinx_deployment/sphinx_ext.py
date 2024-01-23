@@ -8,7 +8,6 @@ from typing import Any
 from jinja2 import Template
 from loguru import logger
 from sphinx.application import Sphinx
-from sphinx.config import Config
 from sphinx.util.fileutil import copy_asset
 
 from ._version import version
@@ -86,30 +85,28 @@ def _html_page_context(
     app.add_js_file(
         None,
         body=f"""
-        var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
-        var versionsJsonUrl = new URL(window.location.href + '{sphinx_deployment_versions_file}');
-        versionsJsonUrl  = versionsJsonUrl.toString()
+var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
+var versionsJsonUrl = new URL(window.location.href + '{sphinx_deployment_versions_file}');
+versionsJsonUrl  = versionsJsonUrl.toString()
         """,
         priority=0,
     )
 
-    app.add_css_file("theme/rtd/rtd.css", priority=600)
-    app.add_js_file("theme/rtd/rtd.js", priority=600)
 
-
-def _config_inited(app: Sphinx, config: Config) -> None:
+def _builder_inited(app: Sphinx) -> None:
     """
     A description of the entire function, its parameters, and its return types.
 
     Parameters:
         app (sphinx.application.Sphinx): The app to set up.
-        config (sphinx.config.Config): The config to set up.
 
     Returns:
         None
     """
-    _ = (app, config)
-    app.connect("html-page-context", _html_page_context)
+    _ = app
+
+    app.add_css_file("theme/rtd/rtd.css")
+    app.add_js_file("theme/rtd/rtd.js", priority=600)
 
 
 def setup(app: Sphinx) -> dict[str, str | bool]:
@@ -133,7 +130,8 @@ def setup(app: Sphinx) -> dict[str, str | bool]:
         app.add_config_value(
             "sphinx_deployment_current_version", current_version, "html"
         )
-        app.connect("config-inited", _config_inited)
+        app.connect("builder-inited", _builder_inited)
+        app.connect("html-page-context", _html_page_context)
         app.connect("build-finished", _generate_deployment_assets)
 
     return {
