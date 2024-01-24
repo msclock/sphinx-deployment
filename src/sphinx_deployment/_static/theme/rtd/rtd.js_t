@@ -69,9 +69,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   const rstCurrentVersionSpan = document.createElement("span");
   rstCurrentVersionSpan.setAttribute("class", "rst-current-version");
   rstCurrentVersionSpan.addEventListener("click", (e) => {
-    if (e.currentTarget.parentNode.classList.contains("shift-up"))
-      e.currentTarget.parentNode.classList.remove("shift-up");
-    else e.currentTarget.parentNode.classList.add("shift-up");
+    e.currentTarget.parentNode.classList.toggle("shift-up");
   });
   rstVersionsDiv.appendChild(rstCurrentVersionSpan);
 
