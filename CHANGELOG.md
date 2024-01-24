@@ -1,3 +1,15 @@
+## [0.0.11](https://github.com/msclock/sphinx-deployment/compare/v0.0.10...v0.0.11) (2024-01-24)
+
+
+### Performance
+
+* toggle class shift-up ([#37](https://github.com/msclock/sphinx-deployment/issues/37)) ([1b8a388](https://github.com/msclock/sphinx-deployment/commit/1b8a38807a60c0af4f7dca2460fcbf72021c91be)), closes [#36](https://github.com/msclock/sphinx-deployment/issues/36)
+
+
+### Chores
+
+* change pypi version badge ([f15646b](https://github.com/msclock/sphinx-deployment/commit/f15646b6b16af04b231e44fcb4608034cd890429))
+
 ## [0.0.10](https://github.com/msclock/sphinx-deployment/compare/v0.0.9...v0.0.10) (2024-01-23)
 
 
