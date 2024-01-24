@@ -9,7 +9,7 @@
 [actions-link]:             https://github.com/msclock/sphinx-deployment/actions
 [pypi-link]:                https://pypi.org/project/sphinx-deployment/
 [pypi-platforms]:           https://img.shields.io/pypi/pyversions/sphinx-deployment
-[pypi-version]:             https://img.shields.io/pypi/v/sphinx-deployment
+[pypi-version]:             https://badge.fury.io/py/sphinx-deployment.svg
 <!-- prettier-ignore-end -->
 
 <!-- SPHINX-START -->
