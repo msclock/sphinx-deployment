@@ -89,7 +89,7 @@ def _html_page_context(
         None,
         body=f"""
 var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
-var versionsJsonUrl = new URL(window.location.href + '{sphinx_deployment_versions_file}');
+var versionsJsonUrl = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '{sphinx_deployment_versions_file}');
 versionsJsonUrl  = versionsJsonUrl.toString()
         """,
         priority=0,
