@@ -13,19 +13,18 @@ from sphinx.util.fileutil import copy_asset
 from ._version import version
 
 
-def _generate_deployment_assets(app: Sphinx, exc: Any) -> None:
+def _generate_deployment_assets(app: Sphinx) -> None:
     """
     Generate the deployment assets to the Sphinx output directory
     if the builder format is HTML and no exception occurred.
 
     Parameters:
         app (Sphinx): The Sphinx application object.
-        exc (Any): The exception object.
 
     Returns:
         None
     """
-    if app.builder.format == "html" and not exc:
+    if app.builder.format == "html":
         dst_static_dir = Path(app.builder.outdir, "_static")
         src_static_dir = Path(__file__).parent.resolve().joinpath("_static")
         dst_theme_dir = dst_static_dir.joinpath("theme", "rtd")
@@ -133,9 +132,9 @@ def setup(app: Sphinx) -> dict[str, str | bool]:
         app.add_config_value(
             "sphinx_deployment_current_version", current_version, "html"
         )
+        app.connect("builder-inited", _generate_deployment_assets)
         app.connect("builder-inited", _builder_inited)
         app.connect("html-page-context", _html_page_context)
-        app.connect("build-finished", _generate_deployment_assets)
 
     return {
         "version": version,
