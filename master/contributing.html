@@ -381,7 +381,7 @@ Install pre-commit and run:</p>
   </div>
 </div><script>
 var sphinx_deployment_current_version = 'master';
-var versionsJsonUrl = new URL(window.location.href + '../versions.json');
+var versionsJsonUrl = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '../versions.json');
 versionsJsonUrl  = versionsJsonUrl.toString()
         </script>
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
