@@ -1,3 +1,10 @@
+## [0.0.12](https://github.com/msclock/sphinx-deployment/compare/v0.0.11...v0.0.12) (2024-01-24)
+
+
+### Bug Fixes
+
+* correct versionsJsonUrl ([#39](https://github.com/msclock/sphinx-deployment/issues/39)) ([0aa980c](https://github.com/msclock/sphinx-deployment/commit/0aa980c29242e5e50d59e6330ce909e04ae21e6e)), closes [#38](https://github.com/msclock/sphinx-deployment/issues/38)
+
 ## [0.0.11](https://github.com/msclock/sphinx-deployment/compare/v0.0.10...v0.0.11) (2024-01-24)
 
 
