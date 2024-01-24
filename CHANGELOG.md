@@ -1,3 +1,10 @@
+## [0.0.13](https://github.com/msclock/sphinx-deployment/compare/v0.0.12...v0.0.13) (2024-01-24)
+
+
+### Performance
+
+* load static files with digests ([#41](https://github.com/msclock/sphinx-deployment/issues/41)) ([7e67cbf](https://github.com/msclock/sphinx-deployment/commit/7e67cbfdaa0493df7776e996952d47fbc79c7440)), closes [#40](https://github.com/msclock/sphinx-deployment/issues/40)
+
 ## [0.0.12](https://github.com/msclock/sphinx-deployment/compare/v0.0.11...v0.0.12) (2024-01-24)
 
 
