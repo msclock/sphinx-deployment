@@ -290,8 +290,7 @@
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">body</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">var sphinx_deployment_current_version = &#39;</span><span class="si">{</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;sphinx_deployment_current_version&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;;</span>
-<span class="s2">var versionsJsonUrl = new URL(window.location.href.slice(0, window.location.href.lastIndexOf(&quot;/&quot;)) + &#39;/&#39; + &#39;</span><span class="si">{</span><span class="n">sphinx_deployment_versions_file</span><span class="si">}</span><span class="s2">&#39;);</span>
-<span class="s2">versionsJsonUrl  = versionsJsonUrl.toString()</span>
+<span class="s2">var sphinx_deployment_versions_file = new URL(window.location.href.slice(0, window.location.href.lastIndexOf(&quot;/&quot;)) + &#39;/&#39; + &#39;</span><span class="si">{</span><span class="n">sphinx_deployment_versions_file</span><span class="si">}</span><span class="s2">&#39;).toString();</span>
 <span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
         <span class="n">priority</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="p">)</span>
@@ -332,10 +331,10 @@
             <span class="sa">f</span><span class="s2">&quot;sphinx_deployment </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2"> deploys &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;versioned docs </span><span class="si">{</span><span class="n">current_version</span><span class="si">}</span><span class="s2"> from </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">confdir</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
-        <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s2">&quot;sphinx_deployment_dll&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span>
         <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
             <span class="s2">&quot;sphinx_deployment_current_version&quot;</span><span class="p">,</span> <span class="n">current_version</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span>
         <span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s2">&quot;sphinx_deployment_dll&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span>
         <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;builder-inited&quot;</span><span class="p">,</span> <span class="n">_generate_deployment_assets</span><span class="p">)</span>
         <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;builder-inited&quot;</span><span class="p">,</span> <span class="n">_builder_inited</span><span class="p">)</span>
         <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;html-page-context&quot;</span><span class="p">,</span> <span class="n">_html_page_context</span><span class="p">)</span>
@@ -380,8 +379,7 @@
   </div>
 </div><script>
 var sphinx_deployment_current_version = 'v0.0';
-var versionsJsonUrl = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '../../../versions.json');
-versionsJsonUrl  = versionsJsonUrl.toString()
+var sphinx_deployment_versions_file = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '../../../versions.json').toString();
         </script>
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
@@ -390,6 +388,6 @@ versionsJsonUrl  = versionsJsonUrl.toString()
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/tabs.js?v=3ee01567"></script>
-    <script src="../../_static/theme/rtd/rtd.js?v=ef4f8074"></script>
+    <script src="../../_static/theme/rtd/rtd.js?v=bf51e2a3"></script>
     </body>
 </html>
