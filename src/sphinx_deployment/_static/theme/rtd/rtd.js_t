@@ -26,16 +26,16 @@ function changeVersion(rootUrl, currentVersion, currentVersionPath, ver) {
 };
 
 window.addEventListener("DOMContentLoaded", async function () {
-  if (!versionsJsonUrl || !sphinx_deployment_current_version) {
-    console.error("versionsJsonUrl or sphinx_deployment_current_version is not set");
+  if (!sphinx_deployment_versions_file || !sphinx_deployment_current_version) {
+    console.error("sphinx_deployment_versions_file or sphinx_deployment_current_version is not set");
     return;
   }
 
-  var rootUrl = versionsJsonUrl.slice(0, versionsJsonUrl.lastIndexOf("/"));
+  var rootUrl = sphinx_deployment_versions_file.slice(0, sphinx_deployment_versions_file.lastIndexOf("/"));
   var currentVersionPath = "/" + sphinx_deployment_current_version + "/";
   var currentVersion = sphinx_deployment_current_version;
 
-  const response = await fetch(versionsJsonUrl);
+  const response = await fetch(sphinx_deployment_versions_file);
   if (!response.ok) {
     throw new Error("Failed to fetch versions.json");
   }

@@ -88,8 +88,7 @@ def _html_page_context(
         None,
         body=f"""
 var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
-var versionsJsonUrl = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '{sphinx_deployment_versions_file}');
-versionsJsonUrl  = versionsJsonUrl.toString()
+var sphinx_deployment_versions_file = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '{sphinx_deployment_versions_file}').toString();
         """,
         priority=0,
     )
@@ -128,10 +127,10 @@ def setup(app: Sphinx) -> dict[str, str | bool]:
             f"sphinx_deployment {version} deploys "
             f"versioned docs {current_version} from {app.confdir}"
         )
-        app.add_config_value("sphinx_deployment_dll", {}, "html")
         app.add_config_value(
             "sphinx_deployment_current_version", current_version, "html"
         )
+        app.add_config_value("sphinx_deployment_dll", {}, "html")
         app.connect("builder-inited", _generate_deployment_assets)
         app.connect("builder-inited", _builder_inited)
         app.connect("html-page-context", _html_page_context)
