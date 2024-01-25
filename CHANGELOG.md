@@ -1,3 +1,10 @@
+## [0.0.14](https://github.com/msclock/sphinx-deployment/compare/v0.0.13...v0.0.14) (2024-01-25)
+
+
+### Performance
+
+* optimize loading context ([#43](https://github.com/msclock/sphinx-deployment/issues/43)) ([ca83c56](https://github.com/msclock/sphinx-deployment/commit/ca83c566549bec12160c387bbe80c8c4e0137859)), closes [#42](https://github.com/msclock/sphinx-deployment/issues/42)
+
 ## [0.0.13](https://github.com/msclock/sphinx-deployment/compare/v0.0.12...v0.0.13) (2024-01-24)
 
 
