@@ -12,6 +12,8 @@ from sphinx.util.fileutil import copy_asset
 
 from ._version import version
 
+DIR = Path(__file__).parent.resolve()
+
 
 def _generate_deployment_assets(app: Sphinx) -> None:
     """
@@ -26,7 +28,7 @@ def _generate_deployment_assets(app: Sphinx) -> None:
     """
     if app.builder.format == "html":
         dst_static_dir = Path(app.builder.outdir, "_static")
-        src_static_dir = Path(__file__).parent.resolve().joinpath("_static")
+        src_static_dir = DIR.joinpath("_static")
         dst_theme_dir = dst_static_dir.joinpath("theme", "rtd")
         src_theme_dir = src_static_dir.joinpath("theme", "rtd")
 
@@ -78,20 +80,15 @@ def _html_page_context(
         Path(context["content_root"]) / ".." / "versions.json"
     )
 
-    # Expose the current versiont to the template
-    context[
-        "sphinx_deployment_current_version"
-    ] = app.config.sphinx_deployment_current_version
-
-    # Register css and js files
-    app.add_js_file(
-        None,
-        body=f"""
-var sphinx_deployment_current_version = '{context["sphinx_deployment_current_version"]}';
-var sphinx_deployment_versions_file = new URL(window.location.href.slice(0, window.location.href.lastIndexOf("/")) + '/' + '{sphinx_deployment_versions_file}').toString();
-        """,
-        priority=0,
-    )
+    # Expose the current versions
+    versions_tpl = DIR.joinpath("_static", "templates", "versions.js")
+    with versions_tpl.open("r", encoding="utf-8") as f:
+        t = Template(f.read(), autoescape=True, keep_trailing_newline=True)
+        rdr = t.render(
+            sphinx_deployment_current_version=app.config.sphinx_deployment_current_version,
+            sphinx_deployment_versions_file=sphinx_deployment_versions_file,
+        )
+        app.add_js_file(None, body=rdr, priority=0)
 
 
 def _builder_inited(app: Sphinx) -> None:
