@@ -1,3 +1,10 @@
+## [0.0.15](https://github.com/msclock/sphinx-deployment/compare/v0.0.14...v0.0.15) (2024-01-26)
+
+
+### Performance
+
+* expose versions meta to pages ([#48](https://github.com/msclock/sphinx-deployment/issues/48)) ([76c228a](https://github.com/msclock/sphinx-deployment/commit/76c228ad1c486e5e27eb4fcdaaf2784fec95a7d6)), closes [#47](https://github.com/msclock/sphinx-deployment/issues/47)
+
 ## [0.0.14](https://github.com/msclock/sphinx-deployment/compare/v0.0.13...v0.0.14) (2024-01-25)
 
 
