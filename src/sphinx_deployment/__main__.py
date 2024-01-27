@@ -1,5 +1,5 @@
 """
-Make the package executable with `python -m sphinx_deployment`.
+Use "python -m sphinx_deployment" to make the package executable.
 """
 from __future__ import annotations
 
