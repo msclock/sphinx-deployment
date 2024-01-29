@@ -183,19 +183,19 @@ def list_versions(branch: str, version_path: str) -> Versions:
         return Versions()
 
 
-def dump_versions(version_path: str, deploy: Versions) -> None:
+def dump_versions(version_path: str, versions: Versions) -> None:
     """
     Write the versions to a JSON file.
 
     Args:
         version_path (str): The path to the JSON file.
-        deploy (Versions): The versions to be written.
+        versions (Versions): The versions to be written.
 
     Returns:
         None
     """
     with Path(version_path).open("w", encoding="utf-8") as f:
-        json.dump(asdict(deploy), f, indent=4, separators=(",", ": "))
+        json.dump(asdict(versions), f, indent=4, separators=(",", ": "))
         f.write("\n")
 
 
