@@ -1,3 +1,20 @@
+## [0.0.16](https://github.com/msclock/sphinx-deployment/compare/v0.0.15...v0.0.16) (2024-01-29)
+
+
+### Performance
+
+* improve readability ([8b14f31](https://github.com/msclock/sphinx-deployment/commit/8b14f3130fe378d97f7f054c5238e79c3e1eebbb))
+
+
+### Chores
+
+* change badge by shields ([dc2972f](https://github.com/msclock/sphinx-deployment/commit/dc2972f1df34241c0700b82559048f2156db99c5))
+
+
+### Docs
+
+* more comments ([b6db17d](https://github.com/msclock/sphinx-deployment/commit/b6db17db8d5429c41678d9a99be624d1219dfd76))
+
 ## [0.0.15](https://github.com/msclock/sphinx-deployment/compare/v0.0.14...v0.0.15) (2024-01-26)
 
 
