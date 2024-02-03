@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>sphinx_deployment.sphinx_ext - sphinx-deployment documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
@@ -278,9 +278,9 @@
     <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">)</span>
 
     <span class="c1"># Get the path to the versions.json file</span>
-    <span class="n">sphinx_deployment_versions_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
-        <span class="n">Path</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;content_root&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;versions.json&quot;</span>
-    <span class="p">)</span>
+    <span class="n">current_page</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;pagename&quot;</span><span class="p">])</span>
+    <span class="n">root_</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;../&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current_page</span><span class="o">.</span><span class="n">parts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">sphinx_deployment_versions_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">root_</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;versions.json&quot;</span><span class="p">)</span>
 
     <span class="c1"># Expose the current versions</span>
     <span class="n">versions_tpl</span> <span class="o">=</span> <span class="n">DIR</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;_static&quot;</span><span class="p">,</span> <span class="s2">&quot;templates&quot;</span><span class="p">,</span> <span class="s2">&quot;versions.js&quot;</span><span class="p">)</span>
