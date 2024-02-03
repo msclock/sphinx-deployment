@@ -76,9 +76,9 @@ def _html_page_context(
     _ = (pagename, templatename, context, doctree)
 
     # Get the path to the versions.json file
-    sphinx_deployment_versions_file = str(
-        Path(context["content_root"]) / ".." / "versions.json"
-    )
+    current_page = Path(context["pagename"])
+    root_ = Path().joinpath("../" * (len(current_page.parts) - 1))
+    sphinx_deployment_versions_file = str(Path(root_) / ".." / "versions.json")
 
     # Expose the current versions
     versions_tpl = DIR.joinpath("_static", "templates", "versions.js")

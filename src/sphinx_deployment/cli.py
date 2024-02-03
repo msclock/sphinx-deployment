@@ -372,7 +372,7 @@ def create_command(
 
             dest_dir = Path(output_path).joinpath(v.name)
             shutil.rmtree(str(dest_dir), ignore_errors=True)
-            shutil.copytree(tmp, str(dest_dir), dirs_exist_ok=True)
+            shutil.copytree(tmp, str(dest_dir))
 
             redirect_html = Path(output_path).joinpath("index.html")
             if not redirect_html.exists():

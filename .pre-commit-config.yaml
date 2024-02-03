@@ -5,18 +5,18 @@ exclude: |
 
 repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: "23.11.0"
+    rev: "22.12.0"
     hooks:
       - id: black-jupyter
 
   - repo: https://github.com/adamchainz/blacken-docs
-    rev: "1.16.0"
+    rev: "1.14.0"
     hooks:
       - id: blacken-docs
-        additional_dependencies: [black==23.*]
+        additional_dependencies: [black==22.*]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v4.5.0"
+    rev: "v4.4.0"
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -56,26 +56,20 @@ repos:
         args: ["--fix", "--show-fixes"]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "v1.7.0"
+    rev: "v1.4.1"
     hooks:
       - id: mypy
         files: src|tests
-        args: []
         additional_dependencies:
           - click
-          - loguru
-          - pytest
-          - sphinx
-          - gitpython
-          - jinja2
 
   - repo: https://github.com/codespell-project/codespell
-    rev: "v2.2.6"
+    rev: "v2.2.5"
     hooks:
       - id: codespell
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: "v0.9.0.6"
+    rev: "v0.9.0.5"
     hooks:
       - id: shellcheck
 
@@ -93,7 +87,7 @@ repos:
       - id: validate-pyproject
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.27.0
+    rev: 0.23.3
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
