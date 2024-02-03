@@ -1,3 +1,15 @@
+## [0.0.17](https://github.com/msclock/sphinx-deployment/compare/v0.0.16...v0.0.17) (2024-02-03)
+
+
+### Performance
+
+* compatible with python3.7 ([#51](https://github.com/msclock/sphinx-deployment/issues/51)) ([b38b7e3](https://github.com/msclock/sphinx-deployment/commit/b38b7e3cbcb2733f0ffc1bd0a3aa019ecb8a2e21)), closes [#45](https://github.com/msclock/sphinx-deployment/issues/45)
+
+
+### CI
+
+* set write permissions ([#50](https://github.com/msclock/sphinx-deployment/issues/50)) ([4240837](https://github.com/msclock/sphinx-deployment/commit/4240837016697e2e796058158e81da8e879ec221))
+
 ## [0.0.16](https://github.com/msclock/sphinx-deployment/compare/v0.0.15...v0.0.16) (2024-01-29)
 
 
