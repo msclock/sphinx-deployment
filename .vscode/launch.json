@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "create",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "sphinx_deployment",
             "console": "internalConsole",
@@ -17,7 +17,7 @@
         },
         {
             "name": "default",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "sphinx_deployment",
             "console": "internalConsole",
@@ -28,7 +28,7 @@
         },
         {
             "name": "delete",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "sphinx_deployment",
             "console": "internalConsole",
@@ -39,7 +39,7 @@
         },
         {
             "name": "rename",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "sphinx_deployment",
             "console": "internalConsole",
@@ -50,7 +50,7 @@
         },
         {
             "name": "serve",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "sphinx_deployment",
             "console": "internalConsole",
@@ -61,7 +61,7 @@
         },
         {
             "name": "sphinx-build dev",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "/home/msclock/projects/sphinx-deployment/.venv/bin/sphinx-build",
             "console": "internalConsole",
