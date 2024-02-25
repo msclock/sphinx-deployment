@@ -42,7 +42,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "sphinx": ("https://www.sphinx-doc.org/", None),
     "jinja2": ("https://jinja.palletsprojects.com/", None),
-    "git": ("https://gitpython.readthedocs.io/en/stable/", None),
+    "git": ("https://gitpython.readthedocs.io/en/latest/", None),
 }
 
 nitpick_ignore = [
