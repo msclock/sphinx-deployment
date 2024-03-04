@@ -76,7 +76,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - uses: wntrblm/nox@2023.04.22
+      - uses: wntrblm/nox@2024.03.02
         with:
           python-versions: "3.11"
 
