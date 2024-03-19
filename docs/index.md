@@ -23,7 +23,6 @@
 Overview <self>
 getting_started
 contributing
-changelog
 ```
 
 <!-- Disable to show when there is no api generation in the docs -->
@@ -31,9 +30,10 @@ changelog
 ```{toctree}
 :maxdepth: 1
 :titlesonly:
-:caption: API docs
+:caption: References
 
 api/sphinx_deployment
+license
 ```
 
 ## Indices and tables
