@@ -128,7 +128,7 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
+        run: >
           npx
           --package @semantic-release/github
           --package conventional-changelog-conventionalcommits@7.0.2
